@@ -9,6 +9,9 @@ before_test:
 - mklink /D "MQL%ver%\include\EA31337-classes" "%cd%"
 - pwd
 test_script:
+- echo %errorlevel%
 - forfiles /m *.mqh /c "mql /s /mql%ver% @path"
+- echo %errorlevel%
+- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 build: off
 platform: x86

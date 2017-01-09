@@ -9,7 +9,7 @@ before_test:
 - mklink /D "MQL%ver%\include\EA31337-classes" "%cd%"
 - pwd
 test_script:
-- ps: $mqlScriptSuccess
+- ps: $mqlScriptSuccess = $true
 - ps: Get-ChildItem  | ForEach-Object {if ($_.Name.EndsWith(".mqh")){.\mql /s /mql$env:ver $_.FullName; if(!$?){$mqlScriptSuccess = $?}; write-host $mqlScriptSuccess}}
 - ps: if (!$mqlScriptSuccess) {throw "At least one mql test failed"}
 #- echo %errorlevel%

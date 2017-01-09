@@ -10,7 +10,7 @@ before_test:
 - pwd
 test_script:
 - ps:  Get-ChildItem  | ForEach-Object {if ($_.Name.EndsWith(".mqh")){.\mql /s /mql$env:ver $_.FullName; if(!$?){$env:mqlFail = $?}}}
-- if (!$env:mqlFail) {throw "At least one mql test failed"}
+- ps: if (!$env:mqlFail) {throw "At least one mql test failed"}
 #- echo %errorlevel%
 #- forfiles /m *.mqh /c "mql /s /mql%ver% @path"
 #- echo %errorlevel%
